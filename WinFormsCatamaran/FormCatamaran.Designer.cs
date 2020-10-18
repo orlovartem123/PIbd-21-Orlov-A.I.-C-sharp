@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.pictureBoxCatamaran = new System.Windows.Forms.PictureBox();
-            this.buttonCreate = new System.Windows.Forms.Button();
+            this.buttonCreateBoat = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
+            this.buttonCreateCatamaran = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCatamaran)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,15 +47,15 @@
             this.pictureBoxCatamaran.TabIndex = 0;
             this.pictureBoxCatamaran.TabStop = false;
             // 
-            // buttonCreate
+            // buttonCreateBoat
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(12, 12);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(114, 34);
-            this.buttonCreate.TabIndex = 1;
-            this.buttonCreate.Text = "Создать";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.ButtonCreate_Click);
+            this.buttonCreateBoat.Location = new System.Drawing.Point(12, 12);
+            this.buttonCreateBoat.Name = "buttonCreateBoat";
+            this.buttonCreateBoat.Size = new System.Drawing.Size(138, 34);
+            this.buttonCreateBoat.TabIndex = 1;
+            this.buttonCreateBoat.Text = "Создать лодку";
+            this.buttonCreateBoat.UseVisualStyleBackColor = true;
+            this.buttonCreateBoat.Click += new System.EventHandler(this.ButtonCreateBoat_Click);
             // 
             // buttonUp
             // 
@@ -104,16 +105,27 @@
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.buttonMove_Click);
             // 
+            // buttonCreateCatamaran
+            // 
+            this.buttonCreateCatamaran.Location = new System.Drawing.Point(156, 12);
+            this.buttonCreateCatamaran.Name = "buttonCreateCatamaran";
+            this.buttonCreateCatamaran.Size = new System.Drawing.Size(138, 34);
+            this.buttonCreateCatamaran.TabIndex = 6;
+            this.buttonCreateCatamaran.Text = "Создать катамаран";
+            this.buttonCreateCatamaran.UseVisualStyleBackColor = true;
+            this.buttonCreateCatamaran.Click += new System.EventHandler(this.ButtonCreateCatamaran_Click);
+            // 
             // FormCatamaran
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.buttonCreateCatamaran);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonUp);
-            this.Controls.Add(this.buttonCreate);
+            this.Controls.Add(this.buttonCreateBoat);
             this.Controls.Add(this.pictureBoxCatamaran);
             this.Name = "FormCatamaran";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -126,11 +138,12 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxCatamaran;
-        private System.Windows.Forms.Button buttonCreate;
+        private System.Windows.Forms.Button buttonCreateBoat;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonDown;
+        private System.Windows.Forms.Button buttonCreateCatamaran;
     }
 }
 
