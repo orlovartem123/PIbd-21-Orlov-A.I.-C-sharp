@@ -65,7 +65,6 @@ bool seats, bool bobs) : base(maxSpeed, weight, mainColor, 104, 100)
                 g.FillRectangle(dopBrush, _startPosX + 90, _startPosY + 20, 12, 20);
                 g.DrawRectangle(pen, _startPosX + 46, _startPosY + 20, 12, 20);
                 g.FillRectangle(dopBrush, _startPosX + 46, _startPosY + 20, 12, 20);
-
             }
         }
     }

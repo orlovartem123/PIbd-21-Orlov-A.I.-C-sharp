@@ -29,6 +29,11 @@ namespace WinFormsCatamaran
             _pictureWidth = width;
             _pictureHeight = height;
         }
+        public void SetPosition(int x, int y)
+        {
+            _startPosX = x;
+            _startPosY = y;
+        }
         public abstract void DrawTransport(Graphics g);
         public abstract void MoveTransport(Direction direction);
     }
