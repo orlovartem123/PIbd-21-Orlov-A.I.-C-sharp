@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 namespace WinFormsCatamaran
 {
 
-    public class Parking<T> where T : class, ITransport
+    public class Port<T> where T : class, ITransport
     {
+        private readonly List<T> _places;
 
-        private readonly T[] _places;
+        private readonly int _maxCount;
 
         private readonly int pictureWidth;
 
@@ -23,49 +24,47 @@ namespace WinFormsCatamaran
 
         private readonly int parkingPlacesInRow;
 
-        public Parking(int picWidth, int picHeight)
+        public Port(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
             parkingPlacesInRow = height;
-            _places = new T[width * height];
+            _maxCount = width * height;
+            _places = new List<T>();
             pictureWidth = picWidth;
             pictureHeight = picHeight;
         }
 
-        public static bool operator +(Parking<T> p, T boat)
+        public static bool operator +(Port<T> p, T boat)
         {
-            for (int i = 0; i < p._places.Length; i++)
+            if (p._places.Count >= p._maxCount)
             {
-                if (p._places[i] == null)
-                {
-                    p._places[i] = boat;
-                    int x = (i / p.parkingPlacesInRow) * p._placeSizeWidth;
-                    int y = (i - p.parkingPlacesInRow * (i / p.parkingPlacesInRow)) * p._placeSizeHeight;
-                    boat.SetPosition(x+5, y+5);
-                    return true;
-                }
+                return false;
             }
-            return false;
+            p._places.Add(boat);
+            return true;
         }
 
-        public static T operator -(Parking<T> p, int index)
+        public static T operator -(Port<T> p, int index)
         {
-            if (index >= p._places.Length || index < 0)
+            if (index < -1 || index >= p._places.Count)
             {
                 return null;
             }
             T boat = p._places[index];
-            p._places[index] = null;
+            p._places.RemoveAt(index);
             return boat;
         }
 
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i]?.DrawTransport(g);
+                int x = (i / parkingPlacesInRow) * _placeSizeWidth;
+                int y = (i - parkingPlacesInRow * (i / parkingPlacesInRow)) * _placeSizeHeight;
+                _places[i].SetPosition(x + 5, y + 5, pictureWidth, pictureHeight);
+                _places[i].DrawTransport(g);
             }
         }
 

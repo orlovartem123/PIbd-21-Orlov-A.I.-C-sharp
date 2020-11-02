@@ -1,6 +1,6 @@
 ﻿namespace WinFormsCatamaran
 {
-    partial class FormParking
+    partial class FormPort
     {
         /// <summary>
         /// Required designer variable.
@@ -28,43 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxParking = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPort = new System.Windows.Forms.PictureBox();
             this.buttonSetBoat = new System.Windows.Forms.Button();
             this.buttonSetCatamaran = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonTakeBoat = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
+            this.listBoxPorts = new System.Windows.Forms.ListBox();
+            this.buttonDelPort = new System.Windows.Forms.Button();
+            this.buttonAddPort = new System.Windows.Forms.Button();
+            this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBoxParking
+            // pictureBoxPort
             // 
-            this.pictureBoxParking.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxParking.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxParking.Name = "pictureBoxParking";
-            this.pictureBoxParking.Size = new System.Drawing.Size(895, 523);
-            this.pictureBoxParking.TabIndex = 0;
-            this.pictureBoxParking.TabStop = false;
+            this.pictureBoxPort.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxPort.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxPort.Name = "pictureBoxPort";
+            this.pictureBoxPort.Size = new System.Drawing.Size(895, 523);
+            this.pictureBoxPort.TabIndex = 0;
+            this.pictureBoxPort.TabStop = false;
             // 
             // buttonSetBoat
             // 
-            this.buttonSetBoat.Location = new System.Drawing.Point(907, 10);
+            this.buttonSetBoat.Location = new System.Drawing.Point(907, 301);
             this.buttonSetBoat.Name = "buttonSetBoat";
             this.buttonSetBoat.Size = new System.Drawing.Size(115, 44);
             this.buttonSetBoat.TabIndex = 1;
-            this.buttonSetBoat.Text = "Припарковать лодку";
+            this.buttonSetBoat.Text = "Пришвартовать лодку";
             this.buttonSetBoat.UseVisualStyleBackColor = true;
             this.buttonSetBoat.Click += new System.EventHandler(this.buttonSetBoat_Click);
             // 
             // buttonSetCatamaran
             // 
-            this.buttonSetCatamaran.Location = new System.Drawing.Point(907, 69);
+            this.buttonSetCatamaran.Location = new System.Drawing.Point(907, 351);
             this.buttonSetCatamaran.Name = "buttonSetCatamaran";
             this.buttonSetCatamaran.Size = new System.Drawing.Size(115, 44);
             this.buttonSetCatamaran.TabIndex = 2;
-            this.buttonSetCatamaran.Text = "Припарковать катамаран";
+            this.buttonSetCatamaran.Text = "Пришвартовать катамаран";
             this.buttonSetCatamaran.UseVisualStyleBackColor = true;
             this.buttonSetCatamaran.Click += new System.EventHandler(this.buttonSetCatamaran_Click);
             // 
@@ -73,7 +78,7 @@
             this.groupBox1.Controls.Add(this.buttonTakeBoat);
             this.groupBox1.Controls.Add(this.maskedTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(907, 149);
+            this.groupBox1.Location = new System.Drawing.Point(907, 411);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(115, 100);
             this.groupBox1.TabIndex = 3;
@@ -107,33 +112,89 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Место";
             // 
-            // FormParking
+            // listBoxPorts
+            // 
+            this.listBoxPorts.FormattingEnabled = true;
+            this.listBoxPorts.Location = new System.Drawing.Point(907, 84);
+            this.listBoxPorts.Name = "listBoxPorts";
+            this.listBoxPorts.Size = new System.Drawing.Size(115, 95);
+            this.listBoxPorts.TabIndex = 4;
+            this.listBoxPorts.SelectedIndexChanged += new System.EventHandler(this.listBoxParkings_SelectedIndexChanged);
+            // 
+            // buttonDelPort
+            // 
+            this.buttonDelPort.Location = new System.Drawing.Point(907, 185);
+            this.buttonDelPort.Name = "buttonDelPort";
+            this.buttonDelPort.Size = new System.Drawing.Size(115, 27);
+            this.buttonDelPort.TabIndex = 5;
+            this.buttonDelPort.Text = "Удалить порт";
+            this.buttonDelPort.UseVisualStyleBackColor = true;
+            this.buttonDelPort.Click += new System.EventHandler(this.ButtonDelParking_Click);
+            // 
+            // buttonAddPort
+            // 
+            this.buttonAddPort.Location = new System.Drawing.Point(907, 51);
+            this.buttonAddPort.Name = "buttonAddPort";
+            this.buttonAddPort.Size = new System.Drawing.Size(115, 27);
+            this.buttonAddPort.TabIndex = 6;
+            this.buttonAddPort.Text = "Добавить порт";
+            this.buttonAddPort.UseVisualStyleBackColor = true;
+            this.buttonAddPort.Click += new System.EventHandler(this.ButtonAddParking_Click);
+            // 
+            // textBoxNewLevelName
+            // 
+            this.textBoxNewLevelName.Location = new System.Drawing.Point(909, 25);
+            this.textBoxNewLevelName.Name = "textBoxNewLevelName";
+            this.textBoxNewLevelName.Size = new System.Drawing.Size(113, 20);
+            this.textBoxNewLevelName.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(938, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Порты";
+            // 
+            // FormPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 523);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxNewLevelName);
+            this.Controls.Add(this.buttonAddPort);
+            this.Controls.Add(this.buttonDelPort);
+            this.Controls.Add(this.listBoxPorts);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonSetCatamaran);
             this.Controls.Add(this.buttonSetBoat);
-            this.Controls.Add(this.pictureBoxParking);
-            this.Name = "FormParking";
+            this.Controls.Add(this.pictureBoxPort);
+            this.Name = "FormPort";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Парковка";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).EndInit();
+            this.Text = "Порт";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxParking;
+        private System.Windows.Forms.PictureBox pictureBoxPort;
         private System.Windows.Forms.Button buttonSetBoat;
         private System.Windows.Forms.Button buttonSetCatamaran;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonTakeBoat;
+        private System.Windows.Forms.ListBox listBoxPorts;
+        private System.Windows.Forms.Button buttonDelPort;
+        private System.Windows.Forms.Button buttonAddPort;
+        private System.Windows.Forms.TextBox textBoxNewLevelName;
+        private System.Windows.Forms.Label label2;
     }
 }

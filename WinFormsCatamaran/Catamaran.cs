@@ -25,7 +25,6 @@ bool seats, bool bobs) : base(maxSpeed, weight, mainColor, 104, 100)
 
         public override void DrawTransport(Graphics g)
         {
-
             Pen pen = new Pen(Color.Black);
             Brush mainBrush = new SolidBrush(MainColor);
             Brush dopBrush = new SolidBrush(DopColor);
