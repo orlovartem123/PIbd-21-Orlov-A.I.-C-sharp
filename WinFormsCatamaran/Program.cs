@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace WinFormsCatamaran
 {
+    public delegate void Action<Vehicle>(Vehicle boat);
+
     static class Program
     {
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
+
         [STAThread]
         static void Main()
         {

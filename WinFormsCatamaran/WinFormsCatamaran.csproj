@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boat.cs" />
+    <Compile Include="FormBoatConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBoatConfig.Designer.cs">
+      <DependentUpon>FormBoatConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPort.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="ITransport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormBoatConfig.resx">
+      <DependentUpon>FormBoatConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCatamaran.resx">
       <DependentUpon>FormCatamaran.cs</DependentUpon>
     </EmbeddedResource>

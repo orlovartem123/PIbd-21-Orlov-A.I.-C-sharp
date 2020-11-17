@@ -58,13 +58,26 @@ bool seats, bool bobs) : base(maxSpeed, weight, mainColor, 104, 100)
             }
             if (PassangerSeat)
             {
-                g.DrawRectangle(pen, _startPosX + 2, _startPosY + 20, 12, 20);
-                g.FillRectangle(dopBrush, _startPosX + 2, _startPosY + 20, 12, 20);
-                g.DrawRectangle(pen, _startPosX + 90, _startPosY + 20, 12, 20);
-                g.FillRectangle(dopBrush, _startPosX + 90, _startPosY + 20, 12, 20);
-                g.DrawRectangle(pen, _startPosX + 46, _startPosY + 20, 12, 20);
-                g.FillRectangle(dopBrush, _startPosX + 46, _startPosY + 20, 12, 20);
+                if (Bobs)
+                {
+                    g.DrawRectangle(pen, _startPosX + 2, _startPosY + 20, 12, 20);
+                    g.FillRectangle(dopBrush, _startPosX + 2, _startPosY + 20, 12, 20);
+                    g.DrawRectangle(pen, _startPosX + 90, _startPosY + 20, 12, 20);
+                    g.FillRectangle(dopBrush, _startPosX + 90, _startPosY + 20, 12, 20);
+                    g.DrawRectangle(pen, _startPosX + 46, _startPosY + 20, 12, 20);
+                    g.FillRectangle(dopBrush, _startPosX + 46, _startPosY + 20, 12, 20);
+                }
+                else
+                {
+                    g.DrawRectangle(pen, _startPosX + 46, _startPosY + 20, 12, 20);
+                    g.FillRectangle(dopBrush, _startPosX + 46, _startPosY + 20, 12, 20);
+                }
             }
+        }
+
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }

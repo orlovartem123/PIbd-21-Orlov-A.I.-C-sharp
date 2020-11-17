@@ -54,53 +54,6 @@ namespace WinFormsCatamaran
             }
         }
 
-        private void buttonSetBoat_Click(object sender, EventArgs e)
-        {
-            if (listBoxPorts.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var boat = new Boat(100, 1000, dialog.Color);
-                    if (portCollection[listBoxPorts.SelectedItem.ToString()] +
-                   boat)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Парковка переполнена");
-                    }
-                }
-            }
-        }
-
-        private void buttonSetCatamaran_Click(object sender, EventArgs e)
-        {
-            if (listBoxPorts.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var boat = new Catamaran(100, 1000, dialog.Color,
-                       dialogDop.Color, true, true);
-                        if (portCollection[listBoxPorts.SelectedItem.ToString()]
-                       + boat)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Парковка переполнена");
-                        }
-                    }
-                }
-            }
-        }
-
         private void buttonTakeBoat_Click(object sender, EventArgs e)
         {
             if (listBoxPorts.SelectedIndex > -1 && maskedTextBox.Text != "")
@@ -144,6 +97,28 @@ namespace WinFormsCatamaran
         private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void ButtonAddBoat_Click(object sender, EventArgs e)
+        {
+            var formBoatConfig = new FormBoatConfig();
+            formBoatConfig.AddEvent(AddBoat);
+            formBoatConfig.Show();
+        }
+
+        private void AddBoat(Vehicle boat)
+        {
+            if (boat != null && listBoxPorts.SelectedIndex > -1)
+            {
+                if ((portCollection[listBoxPorts.SelectedItem.ToString()]) + boat)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Транспорт не удалось поставить");
+                }
+            }
         }
     }
 }
