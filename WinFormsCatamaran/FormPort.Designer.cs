@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBoxPort = new System.Windows.Forms.PictureBox();
-            this.buttonSetBoat = new System.Windows.Forms.Button();
-            this.buttonSetCatamaran = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonTakeBoat = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -40,6 +38,7 @@
             this.buttonAddPort = new System.Windows.Forms.Button();
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonAddBoat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -53,32 +52,12 @@
             this.pictureBoxPort.TabIndex = 0;
             this.pictureBoxPort.TabStop = false;
             // 
-            // buttonSetBoat
-            // 
-            this.buttonSetBoat.Location = new System.Drawing.Point(907, 301);
-            this.buttonSetBoat.Name = "buttonSetBoat";
-            this.buttonSetBoat.Size = new System.Drawing.Size(115, 44);
-            this.buttonSetBoat.TabIndex = 1;
-            this.buttonSetBoat.Text = "Пришвартовать лодку";
-            this.buttonSetBoat.UseVisualStyleBackColor = true;
-            this.buttonSetBoat.Click += new System.EventHandler(this.buttonSetBoat_Click);
-            // 
-            // buttonSetCatamaran
-            // 
-            this.buttonSetCatamaran.Location = new System.Drawing.Point(907, 351);
-            this.buttonSetCatamaran.Name = "buttonSetCatamaran";
-            this.buttonSetCatamaran.Size = new System.Drawing.Size(115, 44);
-            this.buttonSetCatamaran.TabIndex = 2;
-            this.buttonSetCatamaran.Text = "Пришвартовать катамаран";
-            this.buttonSetCatamaran.UseVisualStyleBackColor = true;
-            this.buttonSetCatamaran.Click += new System.EventHandler(this.buttonSetCatamaran_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.buttonTakeBoat);
             this.groupBox1.Controls.Add(this.maskedTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(907, 411);
+            this.groupBox1.Location = new System.Drawing.Point(907, 312);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(115, 100);
             this.groupBox1.TabIndex = 3;
@@ -157,19 +136,28 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Порты";
             // 
+            // buttonAddBoat
+            // 
+            this.buttonAddBoat.Location = new System.Drawing.Point(907, 251);
+            this.buttonAddBoat.Name = "buttonAddBoat";
+            this.buttonAddBoat.Size = new System.Drawing.Size(115, 44);
+            this.buttonAddBoat.TabIndex = 9;
+            this.buttonAddBoat.Text = "Добавить транспорт";
+            this.buttonAddBoat.UseVisualStyleBackColor = true;
+            this.buttonAddBoat.Click += new System.EventHandler(this.ButtonAddBoat_Click);
+            // 
             // FormPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 523);
+            this.Controls.Add(this.buttonAddBoat);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.buttonAddPort);
             this.Controls.Add(this.buttonDelPort);
             this.Controls.Add(this.listBoxPorts);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.buttonSetCatamaran);
-            this.Controls.Add(this.buttonSetBoat);
             this.Controls.Add(this.pictureBoxPort);
             this.Name = "FormPort";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -185,8 +173,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxPort;
-        private System.Windows.Forms.Button buttonSetBoat;
-        private System.Windows.Forms.Button buttonSetCatamaran;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.Label label1;
@@ -196,5 +182,6 @@
         private System.Windows.Forms.Button buttonAddPort;
         private System.Windows.Forms.TextBox textBoxNewLevelName;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonAddBoat;
     }
 }
