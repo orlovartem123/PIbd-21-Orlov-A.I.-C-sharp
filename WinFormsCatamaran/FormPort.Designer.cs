@@ -39,16 +39,23 @@
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonAddBoat = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxPort
             // 
             this.pictureBoxPort.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxPort.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxPort.Location = new System.Drawing.Point(0, 24);
             this.pictureBoxPort.Name = "pictureBoxPort";
-            this.pictureBoxPort.Size = new System.Drawing.Size(895, 523);
+            this.pictureBoxPort.Size = new System.Drawing.Size(895, 499);
             this.pictureBoxPort.TabIndex = 0;
             this.pictureBoxPort.TabStop = false;
             // 
@@ -57,7 +64,7 @@
             this.groupBox1.Controls.Add(this.buttonTakeBoat);
             this.groupBox1.Controls.Add(this.maskedTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(907, 312);
+            this.groupBox1.Location = new System.Drawing.Point(907, 345);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(115, 100);
             this.groupBox1.TabIndex = 3;
@@ -94,7 +101,7 @@
             // listBoxPorts
             // 
             this.listBoxPorts.FormattingEnabled = true;
-            this.listBoxPorts.Location = new System.Drawing.Point(907, 84);
+            this.listBoxPorts.Location = new System.Drawing.Point(907, 107);
             this.listBoxPorts.Name = "listBoxPorts";
             this.listBoxPorts.Size = new System.Drawing.Size(115, 95);
             this.listBoxPorts.TabIndex = 4;
@@ -102,7 +109,7 @@
             // 
             // buttonDelPort
             // 
-            this.buttonDelPort.Location = new System.Drawing.Point(907, 185);
+            this.buttonDelPort.Location = new System.Drawing.Point(907, 208);
             this.buttonDelPort.Name = "buttonDelPort";
             this.buttonDelPort.Size = new System.Drawing.Size(115, 27);
             this.buttonDelPort.TabIndex = 5;
@@ -112,7 +119,7 @@
             // 
             // buttonAddPort
             // 
-            this.buttonAddPort.Location = new System.Drawing.Point(907, 51);
+            this.buttonAddPort.Location = new System.Drawing.Point(907, 74);
             this.buttonAddPort.Name = "buttonAddPort";
             this.buttonAddPort.Size = new System.Drawing.Size(115, 27);
             this.buttonAddPort.TabIndex = 6;
@@ -122,7 +129,7 @@
             // 
             // textBoxNewLevelName
             // 
-            this.textBoxNewLevelName.Location = new System.Drawing.Point(909, 25);
+            this.textBoxNewLevelName.Location = new System.Drawing.Point(909, 48);
             this.textBoxNewLevelName.Name = "textBoxNewLevelName";
             this.textBoxNewLevelName.Size = new System.Drawing.Size(113, 20);
             this.textBoxNewLevelName.TabIndex = 7;
@@ -130,7 +137,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(938, 9);
+            this.label2.Location = new System.Drawing.Point(938, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 8;
@@ -138,13 +145,55 @@
             // 
             // buttonAddBoat
             // 
-            this.buttonAddBoat.Location = new System.Drawing.Point(907, 251);
+            this.buttonAddBoat.Location = new System.Drawing.Point(907, 295);
             this.buttonAddBoat.Name = "buttonAddBoat";
             this.buttonAddBoat.Size = new System.Drawing.Size(115, 44);
             this.buttonAddBoat.TabIndex = 9;
             this.buttonAddBoat.Text = "Добавить транспорт";
             this.buttonAddBoat.UseVisualStyleBackColor = true;
             this.buttonAddBoat.Click += new System.EventHandler(this.ButtonAddBoat_Click);
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1032, 24);
+            this.menuStrip.TabIndex = 10;
+            this.menuStrip.Text = "menuStrip";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.загрузитьToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.СохранитьToolStripMenuItem_Click);
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.ЗагрузитьToolStripMenuItem_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "txt file | *.txt";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            this.openFileDialog.Filter = "txt file | *.txt";
             // 
             // FormPort
             // 
@@ -159,12 +208,16 @@
             this.Controls.Add(this.listBoxPorts);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxPort);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "FormPort";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Порт";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +236,11 @@
         private System.Windows.Forms.TextBox textBoxNewLevelName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonAddBoat;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

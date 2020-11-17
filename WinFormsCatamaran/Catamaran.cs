@@ -23,6 +23,20 @@ bool seats, bool bobs) : base(maxSpeed, weight, mainColor, 104, 100)
             Bobs = bobs;
         }
 
+        public Catamaran(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                PassangerSeat = Convert.ToBoolean(strs[4]);
+                Bobs = Convert.ToBoolean(strs[5]);
+            }
+        }
+
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -78,6 +92,11 @@ bool seats, bool bobs) : base(maxSpeed, weight, mainColor, 104, 100)
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}{separator}{DopColor.Name}{separator}{PassangerSeat}{separator}{Bobs}";
         }
     }
 }

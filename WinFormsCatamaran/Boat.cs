@@ -13,11 +13,24 @@ namespace WinFormsCatamaran
 
         protected readonly int boatHeight = 100;
 
+        protected readonly char separator = ';';
+
         public Boat(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
+        }
+
+        public Boat(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
         }
 
         protected Boat(int maxSpeed, float weight, Color mainColor, int boatWidth, int
@@ -80,6 +93,11 @@ namespace WinFormsCatamaran
             polygonRight[2].X = _startPosX + 60;
             polygonRight[2].Y = _startPosY + 80;
             g.FillPolygon(mainBrush, polygonRight);
+        }
+
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }
