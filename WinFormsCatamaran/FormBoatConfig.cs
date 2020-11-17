@@ -56,12 +56,14 @@ namespace WinFormsCatamaran
 
         private void labelBoat_MouseDown(object sender, MouseEventArgs e)
         {
-            labelBoat.DoDragDrop(labelBoat.Text, DragDropEffects.Move | DragDropEffects.Copy);
+            labelBoat.DoDragDrop(labelBoat.Text, DragDropEffects.Move |
+DragDropEffects.Copy);
         }
 
         private void labelCatamaran_MouseDown(object sender, MouseEventArgs e)
         {
-            labelCatamaran.DoDragDrop(labelCatamaran.Text, DragDropEffects.Move | DragDropEffects.Copy);
+            labelCatamaran.DoDragDrop(labelCatamaran.Text, DragDropEffects.Move |
+DragDropEffects.Copy);
         }
 
         private void panelBoat_DragEnter(object sender, DragEventArgs e)
@@ -73,7 +75,7 @@ namespace WinFormsCatamaran
             else
             {
                 e.Effect = DragDropEffects.None;
-            }
+            }
         }
 
         private void panelBoat_DragDrop(object sender, DragEventArgs e)
