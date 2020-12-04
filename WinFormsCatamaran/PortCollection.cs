@@ -55,7 +55,7 @@ namespace WinFormsCatamaran
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -89,19 +89,18 @@ namespace WinFormsCatamaran
                     }
                 }
             }
-            return true;
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename, System.Text.Encoding.UTF8))
             {
                 string line = sr.ReadLine();
-                if (line.Contains("PortCollection"))
+                if (!(line == null) && line.Contains("PortCollection"))
                 {
                     //очищаем записи
                     portStages.Clear();
@@ -109,7 +108,7 @@ namespace WinFormsCatamaran
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new FormatException();
                 }
                 Vehicle boat = null;
                 string key = string.Empty;
@@ -118,8 +117,7 @@ namespace WinFormsCatamaran
                     if (line.Contains("Port"))
                     {
                         key = line.Split(separator)[1];
-                        portStages.Add(key, new Port<Vehicle>(pictureWidth,
-                        pictureHeight));
+                        portStages.Add(key, new Port<Vehicle>(pictureWidth, pictureHeight));
                         continue;
                     }
                     if (string.IsNullOrEmpty(line))
@@ -137,11 +135,10 @@ namespace WinFormsCatamaran
                     var result = portStages[key] + boat;
                     if (!result)
                     {
-                        return false;
+                        throw new PortOverflowException();
                     }
                 }
             }
-            return true;
         }
     }
 }

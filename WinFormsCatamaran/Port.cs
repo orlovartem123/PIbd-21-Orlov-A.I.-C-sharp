@@ -39,7 +39,7 @@ namespace WinFormsCatamaran
         {
             if (p._places.Count >= p._maxCount)
             {
-                return false;
+                throw new PortOverflowException();
             }
             p._places.Add(boat);
             return true;
@@ -49,7 +49,7 @@ namespace WinFormsCatamaran
         {
             if (index < -1 || index >= p._places.Count)
             {
-                return null;
+                throw new PortNotFoundException(index);
             }
             T boat = p._places[index];
             p._places.RemoveAt(index);

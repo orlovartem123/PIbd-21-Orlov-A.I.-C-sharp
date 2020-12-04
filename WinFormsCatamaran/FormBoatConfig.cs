@@ -75,7 +75,7 @@ DragDropEffects.Copy);
             else
             {
                 e.Effect = DragDropEffects.None;
-            }
+            }
         }
 
         private void panelBoat_DragDrop(object sender, DragEventArgs e)
