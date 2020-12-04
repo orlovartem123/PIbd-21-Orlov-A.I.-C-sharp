@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NLog;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +16,15 @@ namespace WinFormsCatamaran
     {
         private readonly PortCollection portCollection;
 
+        private readonly Logger logger;
+
         public FormPort()
         {
             InitializeComponent();
             portCollection = new PortCollection(pictureBoxPort.Width,
            pictureBoxPort.Height);
             Draw();
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         private void ReloadLevels()
@@ -58,15 +63,28 @@ namespace WinFormsCatamaran
         {
             if (listBoxPorts.SelectedIndex > -1 && maskedTextBox.Text != "")
             {
-                var boat = portCollection[listBoxPorts.SelectedItem.ToString()] -
-               Convert.ToInt32(maskedTextBox.Text);
-                if (boat != null)
+                try
                 {
-                    FormCatamaran form = new FormCatamaran();
-                    form.SetBoat(boat);
-                    form.ShowDialog();
+                    var boat = portCollection[listBoxPorts.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBox.Text);
+                    if (boat != null)
+                    {
+                        FormCatamaran form = new FormCatamaran();
+                        form.SetBoat(boat);
+                        form.ShowDialog();
+                        logger.Info($"Изъят транспорт {boat} с места {maskedTextBox.Text}");
+                        Draw();
+                    }
                 }
-                Draw();
+                catch (PortNotFoundException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -78,6 +96,7 @@ namespace WinFormsCatamaran
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            logger.Info($"Добавили порт {textBoxNewLevelName.Text}");
             portCollection.AddParking(textBoxNewLevelName.Text);
             ReloadLevels();
         }
@@ -89,6 +108,7 @@ namespace WinFormsCatamaran
                 if (MessageBox.Show($"Удалить порт " + listBoxPorts.SelectedItem.ToString() + "?",
              "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info($"Удалили порт {listBoxPorts.SelectedItem.ToString()}");
                     portCollection.DelParking(listBoxPorts.SelectedItem.ToString());
                     ReloadLevels();
                 }
@@ -96,6 +116,7 @@ namespace WinFormsCatamaran
 
         private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info($"Перешли на порт {listBoxPorts.SelectedItem.ToString()}");
             Draw();
         }
 
@@ -110,13 +131,30 @@ namespace WinFormsCatamaran
         {
             if (boat != null && listBoxPorts.SelectedIndex > -1)
             {
-                if ((portCollection[listBoxPorts.SelectedItem.ToString()]) + boat)
+                try
                 {
+                    if ((portCollection[listBoxPorts.SelectedItem.ToString()]) + boat)
+                    {
+                        Draw();
+                        logger.Info($"Добавлен транспорт {boat}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Транспорт не удалось поставить");
+                    }
                     Draw();
                 }
-                else
+                catch (PortOverflowException ex)
                 {
-                    MessageBox.Show("Транспорт не удалось поставить");
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -125,16 +163,17 @@ namespace WinFormsCatamaran
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (portCollection.SaveData(saveFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Сохранение прошло успешно", "Результат",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    portCollection.SaveData(saveFileDialog.FileName);
+                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -142,19 +181,34 @@ namespace WinFormsCatamaran
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (portCollection.LoadData(openFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
+                    portCollection.LoadData(openFileDialog.FileName);
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                     ReloadLevels();
                     Draw();
                 }
-                else
+                catch (FileNotFoundException ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+                catch (PortOverflowException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Некорректный формат файла", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (FormatException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }            }
         }
     }
 }
