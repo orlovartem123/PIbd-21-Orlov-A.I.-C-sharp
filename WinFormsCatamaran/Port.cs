@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace WinFormsCatamaran
 {
 
-    public class Port<T> where T : class, ITransport
+    public class Port<T> : IEnumerator<T>, IEnumerable<T> where T : class, ITransport
     {
         private readonly List<T> _places;
 
@@ -23,6 +24,12 @@ namespace WinFormsCatamaran
         private readonly int _placeSizeHeight = 110;
 
         private readonly int parkingPlacesInRow;
+
+        private int _currentIndex;
+
+        public T Current => _places[_currentIndex];
+
+        object IEnumerator.Current => _places[_currentIndex];
 
         public Port(int picWidth, int picHeight)
         {
@@ -40,6 +47,10 @@ namespace WinFormsCatamaran
             if (p._places.Count >= p._maxCount)
             {
                 throw new PortOverflowException();
+            }
+            if (p._places.Contains(boat))
+            {
+                throw new PortAlreadyHaveException();
             }
             p._places.Add(boat);
             return true;
@@ -90,6 +101,29 @@ namespace WinFormsCatamaran
                 return null;
             }
             return _places[index];
+        }        public void Sort() => _places.Sort((IComparer<T>)new BoatComparer());        public void Dispose()
+        {
+        }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return (_currentIndex < _places.Count);
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }    }
 }
 

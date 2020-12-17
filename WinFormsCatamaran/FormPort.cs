@@ -88,7 +88,7 @@ namespace WinFormsCatamaran
             }
         }
 
-        private void ButtonAddParking_Click(object sender, EventArgs e)
+        private void ButtonAddPort_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
@@ -101,7 +101,7 @@ namespace WinFormsCatamaran
             ReloadLevels();
         }
 
-        private void ButtonDelParking_Click(object sender, EventArgs e)
+        private void ButtonDelPort_Click(object sender, EventArgs e)
         {
             if (listBoxPorts.SelectedIndex > -1)
             {
@@ -114,7 +114,7 @@ namespace WinFormsCatamaran
                 }
             }        }
 
-        private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxPorts_SelectedIndexChanged(object sender, EventArgs e)
         {
             logger.Info($"Перешли на порт {listBoxPorts.SelectedItem.ToString()}");
             Draw();
@@ -148,6 +148,12 @@ namespace WinFormsCatamaran
                 {
                     logger.Error(ex, ex.Message);
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                }
+                catch (PortAlreadyHaveException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Уже есть", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
@@ -204,11 +210,26 @@ namespace WinFormsCatamaran
                     logger.Error(ex, ex.Message);
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (PortAlreadyHaveException ex)
+                {
+                    logger.Error(ex, ex.Message);
+                    MessageBox.Show(ex.Message, "Уже есть", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     logger.Error(ex, ex.Message);
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }            }
+        }
+
+        private void ButtonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxPorts.SelectedIndex > -1)
+            {
+                portCollection[listBoxPorts.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
+            }
         }
     }
 }

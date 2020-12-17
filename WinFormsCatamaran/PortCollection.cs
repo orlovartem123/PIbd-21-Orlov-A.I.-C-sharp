@@ -68,24 +68,19 @@ namespace WinFormsCatamaran
                 {
                     //Начинаем парковку
                     sw.WriteLine($"Port{separator}{level.Key}");
-                    ITransport boat = null;
-                    for (int i = 0; (boat = level.Value.GetNext(i)) != null; i++)
+                    foreach (ITransport boat in level.Value)
                     {
-                        if (boat != null)
+                        //Записываем тип мшаины
+                        if (boat.GetType().Name == "Boat")
                         {
-                            //если место не пустое
-                            //Записываем тип машины
-                            if (boat.GetType().Name == "Boat")
-                            {
-                                sw.Write($"Boat{separator}");
-                            }
-                            if (boat.GetType().Name == "Catamaran")
-                            {
-                                sw.Write($"Catamaran{separator}");
-                            }
-                            //Записываемые параметры
-                            sw.WriteLine(boat);
+                            sw.Write($"Boat{separator}");
                         }
+                        if (boat.GetType().Name == "Catamaran")
+                        {
+                            sw.Write($"Catamaran{separator}");
+                        }
+                        //Записываемые параметры
+                        sw.WriteLine(boat);
                     }
                 }
             }
