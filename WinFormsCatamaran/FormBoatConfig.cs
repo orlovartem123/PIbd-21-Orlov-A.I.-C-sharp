@@ -83,10 +83,10 @@ DragDropEffects.Copy);
             switch (e.Data.GetData(DataFormats.Text).ToString())
             {
                 case "Лодка":
-                    boat = new Boat((int)numericUpDownSpeed.Value, (int)numericUpDownWeight.Value, Color.White);
+                    boat = new Boat((int)numericUpDownSpeed.Value, (float)numericUpDownWeight.Value, Color.White);
                     break;
                 case "Катамаран":
-                    boat = new Catamaran((int)numericUpDownSpeed.Value, (int)numericUpDownWeight.Value, Color.White, Color.Black, checkBoxPasSeats.Checked, checkBoxBobs.Checked);
+                    boat = new Catamaran((int)numericUpDownSpeed.Value, (float)numericUpDownWeight.Value, Color.White, Color.Black, checkBoxPasSeats.Checked, checkBoxBobs.Checked);
                     break;
             }
             DrawBoat();

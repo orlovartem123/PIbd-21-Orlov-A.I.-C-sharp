@@ -45,6 +45,7 @@
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -64,7 +65,7 @@
             this.groupBox1.Controls.Add(this.buttonTakeBoat);
             this.groupBox1.Controls.Add(this.maskedTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(907, 345);
+            this.groupBox1.Location = new System.Drawing.Point(907, 411);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(115, 100);
             this.groupBox1.TabIndex = 3;
@@ -105,7 +106,7 @@
             this.listBoxPorts.Name = "listBoxPorts";
             this.listBoxPorts.Size = new System.Drawing.Size(115, 95);
             this.listBoxPorts.TabIndex = 4;
-            this.listBoxPorts.SelectedIndexChanged += new System.EventHandler(this.listBoxParkings_SelectedIndexChanged);
+            this.listBoxPorts.SelectedIndexChanged += new System.EventHandler(this.listBoxPorts_SelectedIndexChanged);
             // 
             // buttonDelPort
             // 
@@ -115,7 +116,7 @@
             this.buttonDelPort.TabIndex = 5;
             this.buttonDelPort.Text = "Удалить порт";
             this.buttonDelPort.UseVisualStyleBackColor = true;
-            this.buttonDelPort.Click += new System.EventHandler(this.ButtonDelParking_Click);
+            this.buttonDelPort.Click += new System.EventHandler(this.ButtonDelPort_Click);
             // 
             // buttonAddPort
             // 
@@ -125,7 +126,7 @@
             this.buttonAddPort.TabIndex = 6;
             this.buttonAddPort.Text = "Добавить порт";
             this.buttonAddPort.UseVisualStyleBackColor = true;
-            this.buttonAddPort.Click += new System.EventHandler(this.ButtonAddParking_Click);
+            this.buttonAddPort.Click += new System.EventHandler(this.ButtonAddPort_Click);
             // 
             // textBoxNewLevelName
             // 
@@ -137,7 +138,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(938, 32);
+            this.label2.Location = new System.Drawing.Point(944, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 8;
@@ -145,7 +146,7 @@
             // 
             // buttonAddBoat
             // 
-            this.buttonAddBoat.Location = new System.Drawing.Point(907, 295);
+            this.buttonAddBoat.Location = new System.Drawing.Point(907, 361);
             this.buttonAddBoat.Name = "buttonAddBoat";
             this.buttonAddBoat.Size = new System.Drawing.Size(115, 44);
             this.buttonAddBoat.TabIndex = 9;
@@ -175,14 +176,14 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.СохранитьToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.ЗагрузитьToolStripMenuItem_Click);
             // 
@@ -195,11 +196,22 @@
             this.openFileDialog.FileName = "openFileDialog";
             this.openFileDialog.Filter = "txt file | *.txt";
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(907, 279);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(115, 36);
+            this.buttonSort.TabIndex = 11;
+            this.buttonSort.Text = "Сортировать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.ButtonSort_Click);
+            // 
             // FormPort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 523);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonAddBoat);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxNewLevelName);
@@ -242,5 +254,6 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button buttonSort;
     }
 }

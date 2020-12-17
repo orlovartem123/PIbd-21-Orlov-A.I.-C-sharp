@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WinFormsCatamaran
 {
-    class Catamaran : Boat
+    class Catamaran : Boat, IEquatable<Catamaran>
     {
         public Color DopColor { private set; get; }
 
@@ -97,6 +97,59 @@ bool seats, bool bobs) : base(maxSpeed, weight, mainColor, 104, 100)
         public override string ToString()
         {
             return $"{base.ToString()}{separator}{DopColor.Name}{separator}{PassangerSeat}{separator}{Bobs}";
+        }
+
+        public bool Equals(Catamaran other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (Bobs != other.Bobs)
+            {
+                return false;
+            }
+            if (PassangerSeat != other.PassangerSeat)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Catamaran objCatamaran))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(objCatamaran);
+            }
         }
     }
 }
